@@ -1,27 +1,35 @@
 #include<bits/stdc++.h>
 using namespace std;
-vector<vector<int>>Print_Subseq(int idx,vector<int>&v,vector<int>temp,int si){
+vector<vector<int>>v1;
+void Printing_Subsq_K_Sum(int idx,int sum,vector<int>dummy,vector<int>ve,int si,int k){
+    //base case
     if(idx>=si){
-        v1.push_back(temp);
+        if(sum==k){
+            v1.push_back(dummy);
+        }
         return;
     }
     //pick call
-    temp.push_back(v[idx]);
-    Print_Subseq(idx+1,v,temp,si);
-    //not pick
-    temp.pop_back();
-    Print_Subseq(idx+1,v,temp,si);
+    dummy.push_back(ve[idx]);
+    sum+=ve[idx];
+    Printing_Subsq_K_Sum(idx+1,sum,dummy,ve,si,k);
+    //not pick call
+    dummy.pop_back();
+    sum-=ve[idx];
+    Printing_Subsq_K_Sum(idx+1,sum,dummy,ve,si,k);
 }
 int main(){
-    vector<int>v={1,2,3};
-    int si=v.size();
-    vector<int>tmp;
-    vector<vector<int>>mp=Print_Subseq(0,v,tmp,si);
-    for(int i=0;i<v1.size();i++){
-        for(int j=0;j<v1[i].size();j++){
-            cout<<v1[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-    
+  vector<int>ve={4,5,9,6,3};
+  int si=ve.size(),k=9;
+  vector<int>dummy;
+  Printing_Subsq_K_Sum(0,0,dummy,ve,si,k);
+  for(int i=0;i<v1.size();i++){
+      for(int j=0;j<v1[i].size();j++){
+          cout<<v1[i][j]<<" ";
+      }
+      cout<<endl;
+  }
+  
+  
+  
 }
