@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<vector<int>>v1;
+void Printing_Subsq_K_Sum(int idx,int sum,vector<int>dummy,vector<int>ve,int si,int k,bool &is_printed){
+    //base case
+    if(idx>=si){
+        if(sum==k && is_printed==false){
+            v1.push_back(dummy);
+            is_printed=true;
+        }
+        return;
+    }
+    //pick call
+    dummy.push_back(ve[idx]);
+    sum+=ve[idx];
+    Printing_Subsq_K_Sum(idx+1,sum,dummy,ve,si,k,is_printed);
+    //not pick call
+    dummy.pop_back();
+    sum-=ve[idx];
+    Printing_Subsq_K_Sum(idx+1,sum,dummy,ve,si,k,is_printed);
+}
+int main(){
+  vector<int>ve={4,5,9,6,3};
+  int si=ve.size(),k=9;
+  vector<int>dummy;
+  bool isprinted=false;
+  Printing_Subsq_K_Sum(0,0,dummy,ve,si,k,isprinted);
+  for(int i=0;i<v1.size();i++){
+      for(int j=0;j<v1[i].size();j++){
+          cout<<v1[i][j]<<" ";
+      }
+      cout<<endl;
+  }
+  
+  
+  
+}
