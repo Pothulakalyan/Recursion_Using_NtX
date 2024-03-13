@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+int Cnt_Subseq(int idx,int sum,vector<int>ve,int si,int k){
+    int left,right;
+    if(idx>=si){
+        if(sum==k){
+            return 1;
+        }
+        return 0;
+    }
+    //pick
+    sum+=ve[idx];
+    left=Cnt_Subseq(idx+1,sum,ve,si,k);
+    //not-pick
+    sum-=ve[idx];
+    right=Cnt_Subseq(idx+1,sum,ve,si,k);
+    return left+right;
+    
+}
+int main()
+{
+    vector<int>ve={4,5,9};
+    int si=ve.size(),k=9;
+    cout<<Cnt_Subseq(0,0,ve,si,k);
+}
