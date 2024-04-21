@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool isprinted(int n,vector<int>ve,int ind,int k,int sum,vector<int>emp)
+{
+    if(ind>=n){
+        if(sum==k){
+            for(auto it:emp){
+                cout<<it<<" ";
+            }
+            return true;
+        }
+        return false;
+    }
+    //pick
+    emp.push_back(ve[ind]);
+    sum+=ve[ind];
+    if(isprinted(n,ve,ind+1,k,sum,emp)==true) return true;
+    //not pick
+    sum-=ve[ind];
+    emp.pop_back();
+    if(isprinted(n,ve,ind+1,k,sum,emp)==true) return true;
+    return false;
+    
+}
+int main(){
+    vector<int>ve={4,5,9};
+    int si=ve.size(),k=20;
+    vector<int>emp;
+    isprinted(si,ve,0,k,0,emp);
+    
+    
+}
