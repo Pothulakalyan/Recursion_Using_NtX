@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+int Reading_Input(){
+    int Scan_Number;
+    cin>> Scan_Number;
+    return Scan_Number;
+}
+int Finding_Factorial(int Taking_Input){
+    if(Taking_Input<2){
+        return Taking_Input; 
+    }
+    return Finding_Factorial(Taking_Input- 1)+Finding_Factorial(Taking_Input- 2);
+}
+int main(){
+     long long Taking_Input,Number_Input,Result_Factorial;
+     Taking_Input = Reading_Input();
+     Result_Factorial = Finding_Factorial(Taking_Input);
+     cout<<Result_Factorial;
+     
+    
+}
