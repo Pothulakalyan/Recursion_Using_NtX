@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+void printingAllsubseq(int ind,string s,int n,string dummy){
+    if(ind>=n){
+        for(auto it:dummy)
+        {
+            cout<<it<<" ";
+        }
+        cout<<endl;
+        return;
+    }
+    //pick
+    dummy+=s[ind];
+    printingAllsubseq(ind+1,s,n,dummy);
+    //not pick
+    dummy.pop_back();
+    printingAllsubseq(ind+1,s,n,dummy);
+    
+}
+int main() {
+  // write your code here...
+  string s="kalyan",dummy="";
+  printingAllsubseq(0,s,s.size(),dummy);
+  return 0;
+}
