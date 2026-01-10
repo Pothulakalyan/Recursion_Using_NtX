@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int>findingElement(int ind, const vector<int>&ve, int tr){
+    vector<int>ans;
+    if(ind==ve.size()){
+        return ans;
+    }
+
+    //this will contain answer for this fuction call only
+    
+    if(ve[ind]==tr){
+        ans.push_back(ve[ind]);
+    }
+    
+    
+    vector<int>ansFromBelowCalls=findingElement(ind+1, ve, tr);
+    
+    //ansFromBelowCalls this  contains previouse function call answer will adding to current function call 
+    
+    ans.insert(ans.end(), ansFromBelowCalls.begin(), ansFromBelowCalls.end());
+    
+    //after adding the previous answer to current fuction call then return where it will called
+    return ans;
+}
+int main() {
+	int n,tr;
+	cin>>n;
+	vector<int>ve(n);
+	for(int i=0;i<n;i++) cin>>ve[i];
+	cin>>tr;
+	vector<int>ans;
+	
+	ans=findingElement(0,ve,tr);
+	
+	for(auto it:ans) cout<<it<<" ";
+}
