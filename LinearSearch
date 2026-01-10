@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int>findingTarget(vector<int>&ve, int tr, int ind, vector<int>&ans){
+    if(ind==ve.size()){
+        return ans;
+    }
+    if(ve[ind]==tr){
+        ans.push_back(ve[ind]);
+    }
+    return findingTarget(ve, tr, ind+1, ans);
+}
+int main() {
+	// your code goes here
+    int n;
+    cin>>n;
+    vector<int>ve(n);
+    vector<int>res;
+    for(int i=0;i<n;i++) cin>>ve[i];
+    
+    int tr;
+    cin>>tr;
+    
+    vector<int>ans=findingTarget(ve,tr, 0,res);
+    
+    for(auto it: ans) cout<<it<<" ";
+}
