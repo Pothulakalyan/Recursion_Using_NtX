@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void findingElement(int ind, const vector<int>&ve, int tr, vector<int>&ans){
+    if(ind==ve.size()){
+        return;
+    }
+    if(ve[ind]==tr){
+        ans.push_back(ve[ind]);
+    }
+    return findingElement(ind+1, ve, tr, ans);
+}
+int main() {
+	int n,tr;
+	cin>>n;
+	vector<int>ve(n);
+	for(int i=0;i<n;i++) cin>>ve[i];
+	cin>>tr;
+	vector<int>ans;
+	
+	findingElement(0,ve,tr, ans);
+	
+	for(auto it:ans) cout<<it<<" ";
+}
+
+
+
+NOTE: in this code "vector<int>&ve" every time only one function is there not created copy for every function call 
+      vector<int>&ans this is also same as above every fucntion having same ans modifying only in this for suppose
+      1. in first fuction call one element is added to this ans that answer should be appeared in all the function calls 
+      2. whenver any modifications are done in this ans that effect should be reflected in the main function
